@@ -9,9 +9,6 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Board Register</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -23,15 +20,15 @@
                             <form role="form" action="/board/register" method="post">
                                 <div class="form-group">
                                     <label>Title</label><input class="form-control" name="title">
+                                </div>
                                 <div class="form-group">
                                     <label>Text area</label><textarea class="form-control" rows="3" name="content"></textarea>
-                                </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Writer</label><input class="form-control" name="writer">
                                 </div>
-                                <button type="submit" class="btn btn-default">Submit Button</button>
-                                <button type="reset" class="btn btn-default">Reset Button</button>
+                                <button type="submit" class="btn btn-primary">Submit Button</button>
+                                <button type="reset" class="btn btn-outline-secondary">Reset Button</button>
 
                             </form>
 

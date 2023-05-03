@@ -27,7 +27,6 @@ public class BoardController {
 
         log.info("list");
         List<BoardVO> list = service.getList();
-        log.info("list.get(2)?? : "+list.get(2).getBno());
         model.addAttribute("list",list );
     }
 
@@ -40,14 +39,17 @@ public class BoardController {
     public String register(BoardVO board, RedirectAttributes rttr) {
         log.info("register : " + board);
         service.register(board);
-        rttr.addFlashAttribute("result : "+board.getBno()); // 새롭게 등록된 게시물의 번호를 같이 전달하기 위해
+        log.info("result : "+board.getBno());
+        rttr.addFlashAttribute("result", board.getBno());
+        //rttr.addAttribute("result", board.getBno()); // 새롭게 등록된 게시물의 번호를 같이 전달하기 위해
         return "redirect:/board/list";
 
     }
 
-    @GetMapping("/get")
+    @GetMapping({"/get","/modify"})
     public void get(@RequestParam("bno") Long bno, Model model) {
-        log.info("/get");
+        //게시물 조회
+        log.info("/get or modify");
         model.addAttribute("board", service.get(bno));
     }
 
