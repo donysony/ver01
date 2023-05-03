@@ -15,6 +15,7 @@ import javax.sql.DataSource;
     //base-package속성 : 지정된 패키지의 모든 Mybatis관련 어노테이션을 찾아 처리 @MapperScan : Mybatis-spring
 @MapperScan(basePackages = {"com.project.ver01.mapper"})
 @ComponentScan(basePackages = "com.project.ver01.service")
+@ComponentScan(basePackages = "com.project.ver01.controller")
 public class RootConfig {
     @Bean
     public DataSource dataSource(){

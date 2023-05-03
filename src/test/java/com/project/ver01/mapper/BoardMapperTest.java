@@ -70,6 +70,12 @@ public class BoardMapperTest  {
         int count = mapper.update(board);
         log.info("update count : " + count);
     }
+    @Test
+    public void testViewCnt(){
+
+//        log.info(mapper.increaseViewCnt(5L));
+        assertTrue(mapper.increaseViewCnt(5L)==1);
+    }
 
 
 }

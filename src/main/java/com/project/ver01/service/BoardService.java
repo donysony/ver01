@@ -14,4 +14,5 @@ public interface BoardService {
     public boolean remove(Long bno);
 
     public List<BoardVO> getList();
+    public boolean increaseViewCnt(Long bno);
 }
