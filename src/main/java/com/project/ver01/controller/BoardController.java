@@ -46,19 +46,28 @@ public class BoardController {
 
     }
 
-    @GetMapping({"/get","/modify"})
+//    @GetMapping({"/get","/modify"})
+    @GetMapping("/get")
     public void get(@RequestParam("bno") Long bno, Model model) {
         //게시물 조회
-        log.info("/get or modify");
+        log.info("/get");
+        model.addAttribute("board", service.get(bno));
+        service.increaseViewCnt(bno);
+    }
+    @GetMapping("/modify")
+    public void modify(@RequestParam("bno") Long bno, Model model){
+        //게시물 수정페이지 보여주기
+        log.info("/modify");
         model.addAttribute("board", service.get(bno));
     }
 
     @PostMapping("/modify")
     public String modify(BoardVO board, RedirectAttributes rttr) {
         log.info("modify : " + board);
+
         // board를 수정했다면
         if(service.modify(board) ){
-            rttr.addFlashAttribute("result" + "success");
+            rttr.addFlashAttribute("result" , "success");
         }
         return "redirect:/board/list";
     }
@@ -68,7 +77,7 @@ public class BoardController {
         log.info("remove : " + bno);
         if(service.remove(bno)){
         //board를 삭제시 true이면
-            rttr.addFlashAttribute("result" + "success");
+            rttr.addFlashAttribute("result" , "success");
         }
         return "redirect:/board/list";
     }

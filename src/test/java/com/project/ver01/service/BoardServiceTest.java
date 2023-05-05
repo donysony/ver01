@@ -44,7 +44,7 @@ public class BoardServiceTest {
     public void testModify() {
         BoardVO board  = service.get(3L); // 게시물 번호로 board를 가져옴
 
-    //문제! 1L라는 게시물번호가 없어도 null값을 반환하지 않고 빈 테이블을 보여주네
+    //문제! 게시물번호가 없어도 null값을 반환하지 않고 빈 테이블을 보여주네
         if (board == null) {
             return ;
         }

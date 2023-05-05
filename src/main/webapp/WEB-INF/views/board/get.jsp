@@ -30,9 +30,12 @@
                             <label>Writer</label> <input class="form-control" name='writer' value='<c:out value="${board.writer}"/>' readonly="readonly">
                             </div>
                             <div class="form-group">
-                            <button data-oper='modify' class="btn btn-outline-secondary" onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">Modify</button>
-                            <button data-oper='list' class="btn btn-primary" onclick="location.href='/board/list'">List</button>
+                            <button type="button" data-oper='modify' class="btn btn-outline-secondary" >Modify</button>
+                            <button type="button" data-oper='list' class="btn btn-primary" >List</button>
                             </div>
+                            <form id='operForm' action="/board/modify" method="get">
+                                <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'/>
+                            </form>
                         </div> <!--end card-body -->
                     </div>
 
@@ -41,5 +44,39 @@
 
             </div>
             <!-- End of Main Content -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        let operForm = $("#operForm");
 
+        $("button[data-oper='modify']").on("click", function(e){
+            console.log("modify 클릭");
+            operForm.submit();
+        });
+
+        $("button[data-oper = 'list']").on("click", function(e){
+
+            console.log("list 클릭");
+            operForm.find("#bno").remove();
+            operForm.attr("action", "/board/list");
+            operForm.submit();
+        });
+/*
+        $('button').on("click", function(e){
+            let operation = $(this).data("oper");
+            console.log(operation);
+
+            if(operation === 'modify'){
+            console.log(document.querySelector("#operForm"))
+                operForm.submit();
+            }else if(operation === 'list'){
+                self.location="/board/list";
+                return;
+            }
+        });
+*/
+
+
+
+    });
+</script>
 <%@ include file="../includes/footer.jsp"%>

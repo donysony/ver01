@@ -8,13 +8,13 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Board Read</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Board Modify</h1>
 
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Board Read Page</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Board Modify Page</h6>
                         </div>
                         <div class="card-body">
                             <form role="form" action="/board/modify" method="post">
@@ -30,13 +30,9 @@
                                 <div class="form-group">
                                     <label>Writer</label><input class="form-control" name="writer" value='<c:out value="${board.writer}"/>' readonly="readonly">
                                 </div>
-                                <div class="form-group">
-                                    <label>RegDate</label><input class="form-control" name="regdate" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${board.regdate}"/>' readonly="readonly">
-                                <div class="form-group">
-                                    <label>Update Date</label><input class="form-control" name="updateDate" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${board.updateDate}"/>' readonly="readonly">
-                                </div>
-                                </div>
-                                <button type="submit" data-oper='modify' class="btn btn-primary">Modify</button>
+
+
+                                <button type="submit" data-oper='modify' class="btn btn-primary" >Modify</button>
                                 <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
                                 <button type="submit" data-oper='list' class="btn btn-info">List</button>
 
@@ -63,10 +59,14 @@ $(document).ready(function(){
             formObj.attr("action","/board/remove");
         }else if(operation === 'list'){
             //move to list
-            self.location ="/board/list";
-            return;
+            /* self.location ="/board/list"; 변경전 */
+            formObj.attr("action","/board/list").attr("method","get");
+            formObj.empty();
+
         }
-        formObj.submit();
+
+            formObj.submit();
+
     });
 });
 </script>

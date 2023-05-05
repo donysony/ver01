@@ -89,12 +89,15 @@
     $(document).ready(function(){
 
     let result = '<c:out value="${result}"/>';
+    console.log(result);
 
     checkModal(result);
-
+    /*javascript가 실행한 후에 history.state의 상태를 null로 변경*/
     history.replaceState({}, null, null);
 
     function checkModal(result){
+    /*javascript의 모든 처리가 끝나게 되면 history에 쌓이는 상태는 모달창을 보여줄 필요가 없는 상태
+    history.state : history에 쌓이는 상태를 의미  */
         if(result === '' || history.state){
             return;
         }
@@ -102,8 +105,25 @@
             $(".modal-body").html(
                 "게시글 " + parseInt(result) + " 번이 등록되었습니다.");
         }
+        /*모달창 열기*/
         $("#exampleModal").modal("show");
+        const close_btn = document.querySelector(".btn-close")
+        const close_btn2 = document.querySelector(".btn-secondary")
+
+        /*모달 헤더에 있는 닫기버튼 클릭시*/
+        close_btn.addEventListener("click", e =>{
+        /*모달창 닫기*/
+        $("#exampleModal").modal("hide");
+        });
+
+        /*모달 푸터에 있는 닫기버튼 클릭시*/
+        close_btn2.addEventListener("click", e =>{
+        /*모달창 닫기*/
+        $("#exampleModal").modal("hide");
+        });
+
     }
+
 
 });
 
